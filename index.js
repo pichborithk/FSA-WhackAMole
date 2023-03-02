@@ -38,3 +38,9 @@ function startGame() {
 gameArea.addEventListener('click', getHit);
 
 startBtn.addEventListener('click', startGame);
+
+document.body.addEventListener('keyup', (event) => {
+  if (event.code === 'Space') {
+    startGame();
+  }
+});
