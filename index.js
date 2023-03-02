@@ -2,6 +2,8 @@ let score = 0;
 const holes = document.querySelectorAll('.hole');
 const gameArea = document.getElementById('whack-a-mole');
 const scoreDisplay = document.getElementById('score');
+const startBtn = document.querySelector('#start');
+let isStart = false;
 
 function getRandomHole() {
   return Math.floor(Math.random() * holes.length);
@@ -22,5 +24,17 @@ function getHit(event) {
   }
 }
 
+function startGame() {
+  if (!isStart) {
+    isStart = setInterval(randomPopUp, 300);
+    startBtn.innerText = 'STOP';
+  } else {
+    clearInterval(isStart);
+    isStart = false;
+    startBtn.innerText = 'START';
+  }
+}
+
 gameArea.addEventListener('click', getHit);
-// setInterval(randomPopUp, 300);
+
+startBtn.addEventListener('click', startGame);
